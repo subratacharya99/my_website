@@ -1,53 +1,98 @@
-# My Personal Website
+# Personal Portfolio Website
 
-This is my portfolio website where I showcase my work as a Software Engineer. Built it from scratch with React and TypeScript because I wanted something that actually represents me, not just another template.
+A responsive portfolio website built with React and TypeScript, featuring smooth animations and a modern design.
 
-## What's Inside
+## Features
 
-**About Me**: A bit about my background and what drives me as a developer  
-**Experience**: My work at Avantor and iotaMotion, including the cool projects I've shipped  
-**Skills**: All the tech I work with (Python, Go, React, AWS, and more)  
-**Education**: My degree from the University of Iowa  
-**Personal**: Photos of my cats Mello & Lucy, plus my sister's dog Mimi (because why not?)  
-**Contact**: How to reach me if you want to chat about work or just say hi  
+- Responsive design that works on all devices
+- Dark/light theme toggle
+- Smooth animations with Framer Motion
+- Interactive elements and hover effects
+- Optimized for performance
 
 ## Tech Stack
 
-I built this with:
-- React 18 & TypeScript (because type safety is life)
-- Framer Motion for the smooth animations
-- Custom CSS with dark/light themes
-- GitHub Pages for hosting (free and simple!)
+- React 18
+- TypeScript
+- Framer Motion
+- React Icons
+- CSS3 with custom variables
+- GitHub Pages deployment
 
-The site has some fun interactive elements - you can drag my profile picture around, and there's a theme toggle if you prefer dark mode.
+## Prerequisites
 
-## Running Locally
+- Node.js (version 16 or higher)
+- npm or yarn
 
-If you want to check out the code:
+## Installation
 
-```bash
-npm install
-npm start
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd personal_website
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm start
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## Available Scripts
+
+- `npm start` - Runs the app in development mode
+- `npm run build` - Builds the app for production
+- `npm test` - Launches the test runner
+- `npm run deploy` - Deploys to GitHub Pages
+
+## Deployment to GitHub Pages
+
+1. Install gh-pages package (if not already installed):
+   ```bash
+   npm install --save-dev gh-pages
+   ```
+
+2. Add these scripts to your package.json:
+   ```json
+   {
+     "homepage": "https://yourusername.github.io/repository-name",
+     "scripts": {
+       "predeploy": "npm run build",
+       "deploy": "gh-pages -d build"
+     }
+   }
+   ```
+
+3. Deploy to GitHub Pages:
+   ```bash
+   npm run deploy
+   ```
+
+## Project Structure
+
+```
+src/
+├── components/          # React components
+├── contexts/           # React contexts (theme)
+├── App.tsx            # Main app component
+├── index.tsx          # Entry point
+└── index.css          # Global styles
+
+public/
+├── images/            # Image assets
+├── resume/            # Resume files
+└── index.html         # HTML template
 ```
 
-Then open http://localhost:3000 and you should see everything running.
+## Customization
 
-## Deployment
-
-The site auto-deploys to GitHub Pages whenever I push changes. Pretty neat setup:
-
-```bash
-npm run deploy
-```
-
-This builds everything and pushes it to the `gh-pages` branch.
-
-## About the Code
-
-The whole thing is built with Create React App, so it's got all the standard React tooling. Each section is its own component, and I tried to keep the styling modular. The animations are done with Framer Motion - they're subtle but add a nice touch.
-
-Feel free to poke around the code if you're interested. I learned a lot building this, especially about making things look good on mobile (harder than it seems!).
-
----
-
-Made with ☕ and probably too much debugging. If you find any bugs, let me know! 
+- Update personal information in the component files
+- Modify colors by changing CSS variables in `src/index.css`
+- Replace images in `public/images/`
+- Update resume file in `public/resume/` 
