@@ -9,17 +9,17 @@ const Personal: React.FC = () => {
   const pets = [
     {
       name: 'Mello',
-      image: '/images/mello.jpg', // You'll need to add this image to public/images/
+      image: `${process.env.PUBLIC_URL}/images/mello.jpg`,
       alt: 'Mello the cat'
     },
     {
       name: 'Lucy',
-      image: '/images/lucy.jpg', // You'll need to add this image to public/images/
+      image: `${process.env.PUBLIC_URL}/images/lucy.jpg`,
       alt: 'Lucy the cat'
     },
     {
       name: 'Mimi',
-      image: '/images/mimi.jpg', // You'll need to add this image to public/images/
+      image: `${process.env.PUBLIC_URL}/images/mimi.jpg`,
       alt: 'Mimi the dog'
     }
   ];
@@ -53,9 +53,7 @@ const Personal: React.FC = () => {
           >
             <div className="personal__text">
               <p>
-                I live in Durham, NC with my two cats Mello and Lucy, and my sister and her dog Mimi. 
-              </p>
-              <p>
+                I live in Durham, NC with my two cats Mello and Lucy, my sister and her dog Mimi. 
                 I enjoy playing videogames, tennis, and working on projects around the house.
               </p>
             </div>

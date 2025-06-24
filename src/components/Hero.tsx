@@ -115,7 +115,7 @@ const Hero: React.FC = () => {
                 Get In Touch
               </button>
               <a 
-                href="/resume/Subrat_Acharya_Resume.pdf" 
+                href={`${process.env.PUBLIC_URL}/resume/Subrat_Acharya_Resume.pdf`}
                 download="Subrat_Acharya_Resume.pdf"
                 className="btn btn--secondary"
                 target="_blank"
@@ -132,13 +132,13 @@ const Hero: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.0 }}
             >
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <a href="https://github.com/subratacharya99" target="_blank" rel="noopener noreferrer" className="social-link">
                 <FaGithub />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <a href="https://www.linkedin.com/in/subrat-acharya/" target="_blank" rel="noopener noreferrer" className="social-link">
                 <FaLinkedin />
               </a>
-              <a href="mailto:your.email@example.com" className="social-link">
+              <a href="mailto:subratacharya99@gmail.com" className="social-link">
                 <FaEnvelope />
               </a>
             </motion.div>
@@ -171,7 +171,7 @@ const Hero: React.FC = () => {
                 }}
               >
                 <img 
-                  src="/images/profile.jpg" 
+                  src={`${process.env.PUBLIC_URL}/images/profile.jpg`}
                   alt="Subrat Acharya" 
                   className="profile-photo"
                   draggable={false}

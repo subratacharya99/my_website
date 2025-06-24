@@ -2,7 +2,7 @@
   "name": "personal-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://subratacharya99.github.io/personal_website",
+  "homepage": "https://subratacharya99.github.io/my_website",
   "dependencies": {
     "@types/node": "^16.18.0",
     "@types/react": "^18.2.0",
