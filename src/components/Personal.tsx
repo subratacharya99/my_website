@@ -9,12 +9,12 @@ const Personal: React.FC = () => {
   const pets = [
     {
       name: 'Mello',
-      image: `${process.env.PUBLIC_URL}/images/mello.jpg`,
+      image: `${process.env.PUBLIC_URL}/images/mello.JPG`,
       alt: 'Mello the cat'
     },
     {
       name: 'Lucy',
-      image: `${process.env.PUBLIC_URL}/images/lucy.jpg`,
+      image: `${process.env.PUBLIC_URL}/images/lucy.JPG`,
       alt: 'Lucy the cat'
     },
     {
