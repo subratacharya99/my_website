@@ -1,87 +1,53 @@
-# Personal Website
+# My Personal Website
 
-A modern, responsive personal website built with React and TypeScript, showcasing professional experience, skills, and education.
+This is my portfolio website where I showcase my work as a Software Engineer. Built it from scratch with React and TypeScript because I wanted something that actually represents me, not just another template.
 
-## Features
+## What's Inside
 
-- **Modern Design**: Clean, professional layout with smooth animations
-- **Responsive**: Works perfectly on desktop, tablet, and mobile devices
-- **Interactive**: Engaging animations and hover effects using Framer Motion
-- **Accessible**: Built with accessibility best practices
-- **Fast**: Optimized for performance
+**About Me**: A bit about my background and what drives me as a developer  
+**Experience**: My work at Avantor and iotaMotion, including the cool projects I've shipped  
+**Skills**: All the tech I work with (Python, Go, React, AWS, and more)  
+**Education**: My degree from the University of Iowa  
+**Personal**: Photos of my cats Mello & Lucy, plus my sister's dog Mimi (because why not?)  
+**Contact**: How to reach me if you want to chat about work or just say hi  
 
-## Sections
+## Tech Stack
 
-- **Hero**: Eye-catching introduction with call-to-action
-- **About**: Personal introduction and highlights
-- **Experience**: Professional work experience with detailed achievements
-- **Skills**: Technical skills organized by category
-- **Education**: Academic background and achievements
-- **Contact**: Contact information and message form
+I built this with:
+- React 18 & TypeScript (because type safety is life)
+- Framer Motion for the smooth animations
+- Custom CSS with dark/light themes
+- GitHub Pages for hosting (free and simple!)
 
-## Technologies Used
+The site has some fun interactive elements - you can drag my profile picture around, and there's a theme toggle if you prefer dark mode.
 
-- **React 18** - Modern React with hooks
-- **TypeScript** - Type safety and better developer experience
-- **Framer Motion** - Smooth animations and transitions
-- **React Icons** - Beautiful icon library
-- **CSS3** - Modern styling with CSS variables and grid/flexbox
-- **Responsive Design** - Mobile-first approach
+## Running Locally
 
-## Getting Started
+If you want to check out the code:
 
-### Prerequisites
+```bash
+npm install
+npm start
+```
 
-- Node.js (version 14 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository or download the files
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm start
-   ```
-
-4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-## Customization
-
-To customize this website for your own use:
-
-1. **Personal Information**: Update the content in each component with your own information
-2. **Contact Details**: Update the contact information in the Contact component
-3. **Colors**: Modify the CSS variables in `src/index.css` to change the color scheme
-4. **Content**: Replace the placeholder content with your own experience, skills, and education
-5. **Images**: Add your own profile picture or avatar
-
-## Available Scripts
-
-- `npm start` - Runs the app in development mode
-- `npm build` - Builds the app for production
-- `npm test` - Launches the test runner
-- `npm run eject` - Ejects from Create React App (not recommended)
+Then open http://localhost:3000 and you should see everything running.
 
 ## Deployment
 
-To deploy your website:
+The site auto-deploys to GitHub Pages whenever I push changes. Pretty neat setup:
 
-1. Build the project:
-   ```bash
-   npm run build
-   ```
+```bash
+npm run deploy
+```
 
-2. Deploy the `build` folder to your hosting provider of choice (Netlify, Vercel, GitHub Pages, etc.)
+This builds everything and pushes it to the `gh-pages` branch.
 
-## License
+## About the Code
 
-This project is open source and available under the [MIT License](LICENSE).
+The whole thing is built with Create React App, so it's got all the standard React tooling. Each section is its own component, and I tried to keep the styling modular. The animations are done with Framer Motion - they're subtle but add a nice touch.
 
-## Support
+Feel free to poke around the code if you're interested. I learned a lot building this, especially about making things look good on mobile (harder than it seems!).
 
-If you have any questions or need help customizing the website, feel free to reach out! 
+---
+
+Made with ☕ and probably too much debugging. If you find any bugs, let me know! 
