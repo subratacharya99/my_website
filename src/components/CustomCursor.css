@@ -1,0 +1,134 @@
+/* Hide default cursor on desktop */
+* {
+  cursor: none !important;
+}
+
+/* Show default cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+  
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+.cursor-inner {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
+}
+
+.cursor-outer {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+  opacity: 0.3;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .cursor-inner {
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+}
+
+[data-theme="dark"] .cursor-outer {
+  border-color: var(--primary-color);
+  opacity: 0.4;
+}
+
+/* Hover state - expand outer ring */
+.custom-cursor--hover .cursor-inner {
+  transform: translate(-50%, -50%) scale(1.5);
+  background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+}
+
+.custom-cursor--hover .cursor-outer {
+  transform: translate(-50%, -50%) scale(1.5);
+  border-color: var(--accent-color);
+  opacity: 0.6;
+  border-width: 3px;
+}
+
+/* Click state - shrink and brighten */
+.custom-cursor--click .cursor-inner {
+  transform: translate(-50%, -50%) scale(0.8);
+  background: var(--accent-color);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.8);
+}
+
+.custom-cursor--click .cursor-outer {
+  transform: translate(-50%, -50%) scale(0.8);
+  border-color: var(--accent-color);
+  opacity: 0.8;
+  border-width: 4px;
+}
+
+/* Special states for different elements */
+.custom-cursor--hover.on-draggable .cursor-outer {
+  border-style: dashed;
+  animation: rotateBorder 2s linear infinite;
+}
+
+@keyframes rotateBorder {
+  from {
+    transform: translate(-50%, -50%) scale(1.5) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.5) rotate(360deg);
+  }
+}
+
+/* Smooth entry animation */
+.custom-cursor {
+  animation: cursorEntry 0.5s ease-out;
+}
+
+@keyframes cursorEntry {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Performance optimizations */
+.custom-cursor,
+.cursor-inner,
+.cursor-outer {
+  will-change: transform;
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-inner,
+  .cursor-outer {
+    transition: none;
+    animation: none;
+  }
+} 

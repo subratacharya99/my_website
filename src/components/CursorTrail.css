@@ -1,0 +1,74 @@
+.cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998; /* Below draggable elements but above everything else */
+  overflow: hidden;
+}
+
+.trail-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  pointer-events: none;
+  transform-origin: center;
+  transition: opacity 0.1s ease-out, transform 0.1s ease-out;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+  animation: trailPulse 0.6s ease-out;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .trail-dot {
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+}
+
+@keyframes trailPulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Hide trail on touch devices to avoid performance issues */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-trail {
+    display: none;
+  }
+}
+
+/* Reduce trail intensity on lower-end devices */
+@media (prefers-reduced-motion: reduce) {
+  .trail-dot {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Alternative trail colors for special areas */
+.hero:hover ~ .cursor-trail .trail-dot {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+}
+
+/* Smaller dots on mobile for better performance */
+@media (max-width: 768px) {
+  .trail-dot {
+    width: 6px;
+    height: 6px;
+    box-shadow: 0 0 6px rgba(37, 99, 235, 0.2);
+  }
+} 

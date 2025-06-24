@@ -1,0 +1,315 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+  position: relative;
+}
+
+.hero__content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+  width: 100%;
+}
+
+.hero__text {
+  text-align: center;
+}
+
+.hero__title {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.hero__subtitle {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.hero__description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.btn--secondary:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Ensure secondary button text is visible in dark mode */
+[data-theme="dark"] .btn--secondary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.hero__social {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--background-secondary);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.25rem;
+  border: 1px solid var(--border-color);
+}
+
+.social-link:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.hero__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__avatar {
+  position: relative;
+}
+
+.avatar-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Animations temporarily disabled for drag testing */
+}
+
+.profile-photo {
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.avatar-image::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 3s linear infinite;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+/* Dark mode shimmer effect */
+[data-theme="dark"] .avatar-image::before {
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+}
+
+/* Fallback for when image is loading */
+.profile-photo:not([src]), .profile-photo[src=""] {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.profile-photo:not([src])::after, .profile-photo[src=""]::after {
+  content: 'SA';
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* Add wiggle animation to hint draggability */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+}
+
+@keyframes dragHint {
+  0%, 90%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-3px); }
+  20% { transform: translateX(3px); }
+  30% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  50% { transform: translateX(0); }
+}
+
+/* Pause animations when hovering or dragging */
+.avatar-image:hover,
+.avatar-image.dragging {
+  animation-play-state: paused;
+}
+
+.avatar-image:hover::after,
+.avatar-image.dragging::after {
+  animation-play-state: paused;
+  opacity: 0.5;
+}
+
+/* Glow effect temporarily disabled for drag testing */
+.avatar-image::after {
+  display: none;
+}
+
+@keyframes pulseGlow {
+  0%, 90%, 100% { opacity: 0; }
+  50% { opacity: 0.3; }
+}
+
+/* Jiggle animation applied to the image, not the container */
+.avatar-image.jiggling .profile-photo {
+  animation: jigglePulse 5s ease-in-out infinite;
+}
+
+@keyframes jigglePulse {
+  /* Jiggle for first 2 seconds (0-40% of 5s cycle) */
+  0% { transform: rotate(0deg); }
+  4% { transform: rotate(-3deg); }
+  8% { transform: rotate(3deg); }
+  12% { transform: rotate(-3deg); }
+  16% { transform: rotate(3deg); }
+  20% { transform: rotate(-3deg); }
+  24% { transform: rotate(3deg); }
+  28% { transform: rotate(-3deg); }
+  32% { transform: rotate(3deg); }
+  36% { transform: rotate(-3deg); }
+  40% { transform: rotate(0deg); }
+  
+  /* Stay still for next 3 seconds (40-100% of 5s cycle) */
+  40.1%, 100% { transform: rotate(0deg); }
+}
+
+@media (min-width: 768px) {
+  .hero__content {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  
+  .hero__text {
+    text-align: left;
+  }
+  
+  .hero__actions {
+    justify-content: flex-start;
+  }
+  
+  .hero__social {
+    justify-content: flex-start;
+  }
+  
+  .hero__description {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .avatar-image {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .profile-photo:not([src])::after, .profile-photo[src=""]::after {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__content {
+    gap: 6rem;
+  }
+} 
