@@ -74,7 +74,8 @@ const Personal: React.FC = () => {
                       className="pet-image"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
-                        target.src = `https://via.placeholder.com/300x300/e2e8f0/64748b?text=${pet.name}`;
+                        target.style.display = 'none';
+                        target.parentElement!.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f1f5f9; color: #64748b; font-size: 1rem;">${pet.name}</div>`;
                       }}
                     />
                   </div>
