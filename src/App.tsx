@@ -8,7 +8,6 @@ import About from './components/About';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Education from './components/Education';
-import Personal from './components/Personal';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CursorTrail from './components/CursorTrail';
@@ -27,7 +26,6 @@ function App() {
           <Experience />
           <Skills />
           <Education />
-          <Personal />
           <Contact />
         </main>
         <Footer />
