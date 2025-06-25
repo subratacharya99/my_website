@@ -191,9 +191,8 @@
   text-align: center;
   position: relative;
   width: auto;
-  max-width: 350px;
-  min-width: 200px;
   margin: 0 auto;
+  display: inline-block;
 }
 
 .carousel-item {
@@ -223,9 +222,8 @@
 }
 
 .pet-image-container {
-  width: 100%;
+  width: auto;
   height: auto;
-  min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -235,11 +233,13 @@
 }
 
 .pet-image {
-  width: 100%;
+  width: auto;
   height: auto;
+  max-width: 350px;
   max-height: 300px;
   object-fit: contain;
   transition: transform 0.3s ease;
+  display: block;
 }
 
 .pet-card:hover .pet-image {
@@ -274,18 +274,8 @@
     padding: 15px;
   }
   
-  .pet-card {
-    max-width: 280px;
-    min-width: 180px;
-  }
-  
-  .pet-image-container {
-    min-height: 150px;
-  }
-  
   .pet-image {
+    max-width: 280px;
     max-height: 200px;
   }
-  
-
 } 
