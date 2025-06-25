@@ -1,5 +1,5 @@
 .contact {
-  background: var(--background-color);
+  background: var(--background-secondary);
 }
 
 .contact__content {
@@ -135,8 +135,8 @@
   .contact__list {
     grid-template-columns: 1fr;
     gap: 1rem;
-  }
-  
+}
+
   .contact__item {
     padding: 1rem;
     width: 100%;

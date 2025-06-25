@@ -275,6 +275,31 @@
   40.1%, 100% { transform: rotate(0deg); }
 }
 
+/* Typewriter Animation */
+.typewriter-text {
+  display: inline-block;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  font-weight: 400;
+  color: white;
+  margin-left: 2px;
+}
+
+.typewriter-cursor.blinking {
+  animation: blink 1s infinite;
+}
+
+.typewriter-cursor.hidden {
+  opacity: 0;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
 @media (min-width: 768px) {
   .hero__content {
     grid-template-columns: 1fr 1fr;

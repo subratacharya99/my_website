@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa';
 import './Contact.css';
 
 const Contact: React.FC = () => {
@@ -8,12 +8,6 @@ const Contact: React.FC = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   const contactInfo = [
-    {
-      icon: <FaEnvelope />,
-      label: 'Email',
-      value: 'subratacharya99@gmail.com',
-      href: 'mailto:subratacharya99@gmail.com'
-    },
     {
       icon: <FaLinkedin />,
       label: 'LinkedIn',
@@ -51,13 +45,7 @@ const Contact: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <h2 className="section-title">Get In Touch</h2>
-              <p>
-                I'm always interested in hearing about new opportunities and exciting projects. 
-                Whether you're looking for a software engineer, want to collaborate, or just want to say hello, 
-                I'd love to hear from you!
-              </p>
-              
+              <h2 className="section-title">Get In Touch</h2>              
               <div className="contact__list">
                 {contactInfo.map((item, index) => (
                   <motion.div

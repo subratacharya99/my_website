@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaDownload, FaComments } from 'react-icons/fa';
 import './Hero.css';
 
 const Hero: React.FC = () => {
@@ -8,6 +8,11 @@ const Hero: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [shouldJiggle, setShouldJiggle] = useState(false);
   const jiggleTimeoutRef = useRef<NodeJS.Timeout>();
+  
+  // Typewriter animation states
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+  const fullText = "Hi, I'm Subrat Acharya";
 
   const resetJiggleTimer = () => {
     // Clear existing timer
@@ -34,6 +39,30 @@ const Hero: React.FC = () => {
       }
     };
   }, []);
+
+  // Typewriter animation effect - runs once on load
+  useEffect(() => {
+    let typingTimer: NodeJS.Timeout;
+    let currentIndex = 0;
+
+    const type = () => {
+      if (currentIndex < fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex + 1));
+        currentIndex++;
+        typingTimer = setTimeout(type, 100); // 100ms between each character
+      } else {
+        setIsTyping(false);
+        // Typing complete, cursor will remain and keep blinking
+      }
+    };
+    
+    // Start typing immediately
+    type();
+
+    return () => {
+      clearTimeout(typingTimer);
+    };
+  }, [fullText]);
 
   const handleDragStart = () => {
     setIsDragging(true);
@@ -92,8 +121,17 @@ const Hero: React.FC = () => {
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 0.2 }}
              >
-               Hi, I'm{' '}
-               <span className="gradient-text">Subrat Acharya</span>
+               <span className="typewriter-text">
+                 {displayedText.includes('Subrat Acharya') ? (
+                   <>
+                     {displayedText.split('Subrat Acharya')[0]}
+                     <span className="gradient-text">Subrat Acharya</span>
+                   </>
+                 ) : (
+                   displayedText
+                 )}
+                 <span className="typewriter-cursor blinking">|</span>
+               </span>
              </motion.h1>
             
             <motion.h2
@@ -111,7 +149,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.8 }}
             >
               <button className="btn btn--primary" onClick={scrollToContact}>
-                <FaEnvelope />
+                <FaComments />
                 Get In Touch
               </button>
               <a 
@@ -137,9 +175,6 @@ const Hero: React.FC = () => {
               </a>
               <a href="https://www.linkedin.com/in/subrat-acharya/" target="_blank" rel="noopener noreferrer" className="social-link">
                 <FaLinkedin />
-              </a>
-              <a href="mailto:subratacharya99@gmail.com" className="social-link">
-                <FaEnvelope />
               </a>
             </motion.div>
           </motion.div>

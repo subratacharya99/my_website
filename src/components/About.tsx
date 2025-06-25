@@ -1,11 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { FaRocket, FaBolt, FaCogs, FaBullseye } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import './About.css';
 
 const About: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [currentPetIndex, setCurrentPetIndex] = useState(0);
 
   const pets = [
     {
@@ -25,6 +26,14 @@ const About: React.FC = () => {
     }
   ];
 
+  const nextPet = () => {
+    setCurrentPetIndex((prev) => (prev + 1) % pets.length);
+  };
+
+  const prevPet = () => {
+    setCurrentPetIndex((prev) => (prev - 1 + pets.length) % pets.length);
+  };
+
   return (
     <section id="about" className="about section-padding">
       <div className="container">
@@ -42,121 +51,99 @@ const About: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h2 className="section-title">About Me</h2>
-            <div className="section-subtitle">
-              Software Engineer with extensive experience in developing innovative solutions
-            </div>
           </motion.div>
 
-          <div className="about__grid">
-            <motion.div
-              className="about__text"
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <p>
-                I am a dedicated Software Engineer with extensive experience in developing and enhancing 
-                software solutions across various industries. My journey began with a strong educational 
-                foundation in engineering, providing me with both technical depth and analytical thinking skills.
-              </p>
-              
-              <p>
-                I specialize in leading full-stack development projects, overseeing all aspects from initial 
-                design through to final deployment. I have experience with modern cloud architectures, 
-                automation systems, and have contributed to multiple successful product launches throughout 
-                my career.
-              </p>
-              
-              <p>
-                My approach combines technical expertise with strong problem-solving skills and effective 
-                communication. I thrive in both independent and team environments, consistently delivering 
-                high-quality solutions that drive business value and operational efficiency.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="about__highlights"
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <div className="highlight-card hover-lift">
-                <div className="highlight-icon">
-                  <FaRocket />
-                </div>
-                <h3>Innovation</h3>
-                <p>Led development of cutting-edge solutions, saving companies time and money</p>
-              </div>
-              
-              <div className="highlight-card hover-lift">
-                <div className="highlight-icon">
-                  <FaBolt />
-                </div>
-                <h3>Performance</h3>
-                <p>Improved application efficiency and reduced manufacturing defects</p>
-              </div>
-              
-              <div className="highlight-card hover-lift">
-                <div className="highlight-icon">
-                  <FaCogs />
-                </div>
-                <h3>Versatility</h3>
-                <p>Full-stack expertise from embedded systems to cloud architecture</p>
-              </div>
-              
-              <div className="highlight-card hover-lift">
-                <div className="highlight-icon">
-                  <FaBullseye />
-                </div>
-                <h3>Results</h3>
-                <p>Completed projects on time and within budget</p>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Personal Section */}
           <motion.div
-            className="about__personal"
+            className="about__text"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <h3 className="personal__title">More About Me</h3>
-            <div className="personal__text">
-              <p>
-                I live in Durham, NC with my two cats Mello and Lucy, my sister and her dog Mimi. 
-                I enjoy playing videogames, tennis, and working on projects around the house.
-              </p>
-            </div>
-
-            <div className="pet-gallery">
-              {pets.map((pet, index) => (
-                <motion.div
-                  key={pet.name}
-                  className="pet-card hover-lift"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
-                >
-                  <div className="pet-image-container">
-                    <img 
-                      src={pet.image} 
-                      alt={pet.alt}
-                      className="pet-image"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        target.parentElement!.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f1f5f9; color: #64748b; font-size: 1rem;">${pet.name}</div>`;
-                      }}
-                    />
-                  </div>
-                  <div className="pet-info">
-                    <h3 className="pet-name">{pet.name}</h3>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <p>
+              I'm a Software Engineer with experience in full-stack development and cloud architectures. 
+              I specialize in leading projects from design to deployment and have contributed to multiple 
+              successful product launches.
+            </p>
+            
+            <p>
+              I live in Durham, NC with my two cats Mello and Lucy, my sister and her dog Mimi. 
+              I enjoy playing videogames, tennis, and working on projects around the house.
+            </p>
           </motion.div>
+
+          <motion.div
+            className="pet-carousel"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <div className="carousel-container">
+              <button className="carousel-btn carousel-btn--prev" onClick={prevPet} aria-label="Previous pet">
+                <FaChevronLeft />
+              </button>
+              
+              <div className="carousel-content">
+                {pets.map((pet, index) => {
+                  const isActive = index === currentPetIndex;
+                  const isPrev = index === (currentPetIndex - 1 + pets.length) % pets.length;
+                  const isNext = index === (currentPetIndex + 1) % pets.length;
+                  
+                  let position = 'hidden';
+                  if (isActive) position = 'active';
+                  else if (isPrev) position = 'prev';
+                  else if (isNext) position = 'next';
+                  
+                  return (
+                    <motion.div
+                      key={pet.name}
+                      className={`pet-card carousel-item carousel-item--${position} ${isActive ? 'hover-lift' : ''}`}
+                      animate={{
+                        scale: isActive ? 1 : 0.8,
+                        opacity: isActive ? 1 : 0.6,
+                        zIndex: isActive ? 10 : 1,
+                        x: isPrev ? -120 : isNext ? 120 : 0
+                      }}
+                      whileHover={!isActive ? {
+                        scale: 0.85,
+                        opacity: 0.8
+                      } : {}}
+                      transition={{ 
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                        mass: 0.8
+                      }}
+                      onClick={() => setCurrentPetIndex(index)}
+                    >
+                      <div className="pet-image-container">
+                        <img 
+                          src={pet.image} 
+                          alt={pet.alt}
+                          className="pet-image"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            target.parentElement!.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f1f5f9; color: #64748b; font-size: 1rem;">${pet.name}</div>`;
+                          }}
+                        />
+                      </div>
+                      <div className="pet-info">
+                        <h3 className="pet-name">{pet.name}</h3>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+              
+              <button className="carousel-btn carousel-btn--next" onClick={nextPet} aria-label="Next pet">
+                <FaChevronRight />
+              </button>
+            </div>
+            
+
+          </motion.div>
+
+
         </motion.div>
       </div>
     </section>
